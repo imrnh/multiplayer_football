@@ -18,7 +18,7 @@ ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
 CLIENT_ID = str(uuid.uuid4())
 
 last_sent = 0
-SEND_INTERVAL = 0.1  # seconds
+SEND_INTERVAL = 0.01  # seconds (100 frames per seconds)
 
 
 def load_image(name, fallback_size=(50, 90)):
