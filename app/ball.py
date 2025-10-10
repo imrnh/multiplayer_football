@@ -12,7 +12,7 @@ class Ball:
         self.vy = -4
 
         # Global variables
-        self.gravity =gravity
+        self.gravity = gravity
         self.ground_height = ground_height
         self.width = width
         self.height = height
@@ -40,20 +40,28 @@ class Ball:
             self.rect.left = max(self.rect.left, 0)
             self.rect.right = min(self.rect.right, self.width)
 
-        # for p in players:
-        #     if self.rect.colliderect(p.rect):
-        #         self.vx = self.vx * 0.25 + p.vx * 0.9 + random.uniform(-1, 1)
-        #         self.vy = -8 + p.vy * 0.2
-
-        # Circle Collision
+        # Circle Collision - From leg to head
         for p in players:
-            if self.rect.colliderect(p.rect):
-                # approximate circle collision
+            # Create collision hitbox from bottom (leg) to top (head)
+            # Use full player rect for collision detection
+            player_hitbox = p.rect.copy()
+            
+            # Expand hitbox slightly downward to ensure leg collision
+            player_hitbox.height += 10  # Add 10px below for better leg detection
+            player_hitbox.y -= 10  # Move up so bottom stays at same position
+            
+            if self.rect.colliderect(player_hitbox):
                 ball_center = pygame.Vector2(self.rect.center)
                 player_center = pygame.Vector2(p.rect.center)
                 diff = ball_center - player_center
+                
                 if diff.length() == 0:
                     diff = pygame.Vector2(random.uniform(-1, 1), -1)
+                
                 normal = diff.normalize()
-                self.vx, self.vy = normal.x * 8, normal.y * 16  # reflect outwards
-                self.rect.center += normal * (self.radius + 5)  # push slightly out
+                
+                # Apply force based on collision
+                self.vx, self.vy = normal.x * 8, normal.y * 16
+                
+                # Push ball out to prevent sticking
+                self.rect.center += normal * (self.radius + 5)

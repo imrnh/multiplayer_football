@@ -1,0 +1,8 @@
+pygame
+Django
+channels
+channels-redis
+redis
+websocket-client
+uvicorn
+daphne
