@@ -20,7 +20,7 @@ services:
   web:
     build: .
     container_name: football_backend
-    command: daphne -b 0.0.0.0 -p 3005 game_sever.asgi:application
+    command: daphne -b 0.0.0.0 -p 3005 game_server.asgi:application
     volumes:
       - .:/app
     ports:
@@ -30,7 +30,7 @@ services:
         condition: service_healthy
     environment:
       - REDIS_URL=redis://redis:6379/0
-      - DJANGO_SETTINGS_MODULE=game_sever.settings
+      - DJANGO_SETTINGS_MODULE=game_server.settings
     networks:
       - football_network
     restart: unless-stopped
