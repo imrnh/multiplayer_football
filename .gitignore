@@ -1,0 +1,4 @@
+app/build
+app/dist
+app/.env
+app/main.spec

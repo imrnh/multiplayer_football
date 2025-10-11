@@ -9,6 +9,9 @@ from ball import Ball
 from connect import WSClient
 from player import Player
 
+
+SERVER_URL="ws://0.0.0.0:3005/ws/game/"
+
 WIDTH, HEIGHT = 900, 420
 FPS = 60
 GAME_SECONDS = 60
@@ -123,7 +126,7 @@ def main():
     clock = pygame.time.Clock()
 
     # Create and start websocket client
-    ws = WSClient("ws://0.0.0.0:3005/ws/game/")
+    ws = WSClient(SERVER_URL)
     ws.start()
 
     # Wait on start screen until match found
