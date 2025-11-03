@@ -3,6 +3,12 @@
 
 <center>Django, Websocket, Redis</center>
 
+# Game Details
+
+The game needs 2 player to play it. Each match is played for 60 seconds. <br>
+![My local image](./images/game_ui.png)
+
+
 # How to Run?
 
 ## Directories
@@ -36,8 +42,3 @@ pyinstaller --onefile --windowed main.py
 ```
 
 ####
-
-# Game Details
-
-The game needs 2 player to play it. Each match is played for 60 seconds. <br>
-![My local image](./images/game_ui.png)
